@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Struktural Perangkat Desa - Desa Kemiri</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-green: #1b5e20;
+            --secondary-green: #2e7d32;
+            --accent-green: #4caf50;
+            --light-green: #e8f5e8;
+            --gold: #ffd700;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: var(--light-green);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold) !important;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-menu {
+            background: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .dropdown-item {
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.7)),
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 6rem 1rem 3rem;
+            text-align: center;
+            margin-top: 56px;
+            position: relative;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .structure-section {
+            padding: 4rem 1rem;
+            background: white;
+        }
+
+        .section-title {
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .kepala-desa-card {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .kepala-desa-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid var(--gold);
+            margin: 0 auto 1.5rem;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-green);
+            /* Fallback color for icon if image not loaded */
+        }
+
+        .kepala-desa-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .kepala-desa-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .kepala-desa-title {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .kepala-desa-badge {
+            background: var(--gold);
+            color: var(--primary-green);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .perangkat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .perangkat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .perangkat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-green);
+        }
+
+        .perangkat-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary-green);
+            border: 3px solid var(--accent-green);
+        }
+
+        .perangkat-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .perangkat-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .perangkat-title {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .perangkat-contact {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .news-section {
+            background: var(--light-green);
+            padding: 3rem 1rem;
+        }
+
+        .news-card {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-image {
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .news-title {
+            color: var(--primary-green);
+            font-weight: 600;
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            border-top: 2px solid var(--gold);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-custom {
+            background: var(--accent-green);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .kepala-desa-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .kepala-desa-name {
+                font-size: 1.3rem;
+            }
+
+            .perangkat-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .perangkat-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .perangkat-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
+            .structure-section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .stagger-animation {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .stagger-animation:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .stagger-animation:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .stagger-animation:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .stagger-animation:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="homepage.html">
+                <i class="fas fa-home me-2"></i>DESA KEMIRI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="infoDesaDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-info-circle me-1"></i>Info Desa
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="struktural_perangkat.html"><i
+                                        class="fas fa-users me-2"></i>Struktural Desa</a></li>
+                            <li><a class="dropdown-item" href="data_penduduk.html"><i
+                                        class="fas fa-chart-bar me-2"></i>Data Penduduk</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="sejarah_desa.html">
+                            <i class="fas fa-history me-1"></i>Sejarah Desa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="wisata.html">
+                            <i class="fas fa-map-marked-alt me-1"></i>Potensi Wisata
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="komoditas.html">
+                            <i class="fas fa-seedling me-1"></i>Potensi Komoditas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="peta.html">
+                            <i class="fas fa-map me-1"></i>Peta Desa
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Struktural Perangkat Desa</h1>
+            <p class="page-subtitle">Pemerintahan Desa Kemiri Periode 2024-2030</p>
+        </div>
+    </section>
+
+    <section class="structure-section">
+        <div class="container">
+
+            <div class="kepala-desa-card fade-in-up" id="kepalaDesaCard">
+                <div class="text-center p-4">Loading Kepala Desa data...</div>
+            </div>
+
+            <h3 class="section-title">Perangkat Desa</h3>
+            <div class="perangkat-grid" id="perangkatDesaGrid">
+                <div class="text-center p-4">Loading Perangkat Desa data...</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container">
+            <h3 class="section-title">Berita Terkini</h3>
+
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card news-card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                                        class="img-fluid news-image" alt="Berita">
+                                </div>
+                                <div class="col-8">
+                                    <h6 class="news-title">Rapat Koordinasi Perangkat Desa Kemiri Bulan Juli</h6>
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar-alt me-1"></i>6 Juli 2025
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card news-card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                                        class="img-fluid news-image" alt="Berita">
+                                </div>
+                                <div class="col-8">
+                                    <h6 class="news-title">Pelantikan Perangkat Desa Kemiri Periode 2024-2030</h6>
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar-alt me-1"></i>4 Juli 2025
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card news-card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                                        class="img-fluid news-image" alt="Berita">
+                                </div>
+                                <div class="col-8">
+                                    <h6 class="news-title">Sosialisasi Program Kerja Pemerintah Desa Kemiri</h6>
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar-alt me-1"></i>2 Juli 2025
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button Lihat Semua -->
+        <div class="text-center mt-4">
+            <a href="page_berita.html" class="btn btn-custom">
+                <i class="fas fa-newspaper me-2"></i>Lihat Semua Berita
+            </a>
+        </div>
+        </div>
+
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <h5><i class="fas fa-home me-2"></i>DESA KEMIRI</h5>
+                    <p class="mb-2">Kecamatan Tulung, Kabupaten Klaten</p>
+                    <p class="mb-0">Jawa Tengah, Indonesia</p>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-end">
+                    <h6><i class="fas fa-graduation-cap me-2"></i>KKN BELA NEGARA 83</h6>
+                    <p class="mb-0">UPN Veteran Yogyakarta</p>
+                </div>
+            </div>
+            <div class="footer-content">
+                <p class="mb-0">© 2025 Desa Kemiri</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.perangkat-card, .news-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Mobile menu auto-close
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', function () {
+                // Jangan tutup navbar jika link adalah dropdown-toggle
+                if (this.classList.contains('dropdown-toggle')) return;
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click();
+                }
+            });
+        });
+
+
+        // Add stagger animation to cards
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.perangkat-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Function to fetch and display structural data
+        async function fetchStrukturalData() {
+            const kepalaDesaCard = document.getElementById('kepalaDesaCard');
+            const perangkatDesaGrid = document.getElementById('perangkatDesaGrid');
+
+            kepalaDesaCard.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div> Loading Kepala Desa data...</div>';
+            perangkatDesaGrid.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div> Loading Perangkat Desa data...</div>';
+
+            try {
+                const response = await fetch('http://localhost:3000/api/struktural');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data && data.length > 0) {
+                    const kepalaDesa = data.find(member => member.role === 1); // Assuming role 1 is Kepala Desa
+                    const perangkatLain = data.filter(member => member.role === 0); // Assuming role 0 is other staff
+
+                    // Display Kepala Desa
+                    if (kepalaDesa) {
+                        kepalaDesaCard.innerHTML = `
+                        <div class="kepala-desa-avatar">
+                            ${kepalaDesa.image_url ? `<img src="${kepalaDesa.image_url}" alt="${kepalaDesa.nama}">` : `<i class="fas fa-user-tie"></i>`}
+                        </div>
+                        <div class="kepala-desa-name">${kepalaDesa.nama}</div>
+                        <div class="kepala-desa-title">${kepalaDesa.jabatan}</div>
+                        <div class="kepala-desa-badge">
+                            <i class="fas fa-crown me-2"></i>Pimpinan Desa
+                        </div>
+                    `;
+                    } else {
+                        kepalaDesaCard.innerHTML = '<div class="text-center p-4 text-warning">Data Kepala Desa belum tersedia.</div>';
+                    }
+
+                    // Display other Perangkat Desa
+                    perangkatDesaGrid.innerHTML = perangkatLain.map((member, index) => `
+                    <div class="perangkat-card fade-in-up stagger-animation" style="animation-delay: ${index * 0.1}s;">
+                        <div class="perangkat-avatar">
+                            ${member.image_url ? `<img src="${member.image_url}" alt="${member.nama}">` : `<i class="fas fa-${getIconForJabatan(member.jabatan)}"></i>`}
+                        </div>
+                        <div class="perangkat-name">${member.nama}</div>
+                        <div class="perangkat-title">${member.jabatan}</div>
+                        <div class="perangkat-contact">
+                            <i class="fas fa-phone me-1"></i>(Tidak ada data kontak)
+                        </div>
+                    </div>
+                `).join('');
+
+                    // Re-observe elements for animation after content is loaded
+                    document.querySelectorAll('.perangkat-card, .kepala-desa-card').forEach(card => {
+                        observer.observe(card);
+                    });
+
+                } else {
+                    kepalaDesaCard.innerHTML = '<div class="text-center p-4 text-warning">Data struktural desa belum tersedia.</div>';
+                    perangkatDesaGrid.innerHTML = ''; // Clear loading message if no data
+                }
+            } catch (error) {
+                console.error('Error fetching struktural data:', error);
+                kepalaDesaCard.innerHTML = '<div class="text-center p-4 text-danger">Gagal memuat data struktural desa. Silakan coba lagi nanti.</div>';
+                perangkatDesaGrid.innerHTML = ''; // Clear loading message on error
+            }
+        }
+
+        // Helper function to get icon based on jabatan
+        function getIconForJabatan(jabatan) {
+            switch (jabatan.toLowerCase()) {
+                case 'sekretaris desa': return 'user-graduate';
+                case 'bendahara': return 'calculator';
+                case 'ketua bpd': return 'users-cog';
+                case 'kaur pemerintahan': return 'building';
+                case 'kaur pembangunan': return 'hard-hat';
+                case 'kaur kesejahteraan': return 'heart';
+                case 'kasi pemerintahan': return 'file-alt';
+                case 'kasi pelayanan': return 'handshake';
+                case 'kasi kesejahteraan': return 'users';
+                default: return 'user';
+            }
+        }
+
+        // Fetch data when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', fetchStrukturalData);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Berita & Informasi - Desa Kemiri</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-green: #1b5e20;
+      --secondary-green: #2e7d32;
+      --accent-green: #4caf50;
+      --light-green: #e8f5e8;
+      --gold: #ffd700;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      padding-top: 60px;
+      background: #f8f9fa;
+      margin: 0;
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: 60px;
+      min-height: 60px;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: white !important;
+    }
+    
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--gold) !important;
+      transform: translateY(-2px);
+    }
+
+    .dropdown-menu {
+      background: white;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .dropdown-item {
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--light-green);
+      color: var(--primary-green);
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.85), rgba(46, 125, 50, 0.85)),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;
+      color: white;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .page-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .breadcrumb {
+      background: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .breadcrumb-item a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    .breadcrumb-item a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .breadcrumb-item.active {
+      color: var(--gold);
+    }
+
+    .news-container {
+      padding: 1rem 0;
+    }
+
+    .news-card {
+      background: white;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .news-title {
+      color: var(--primary-green);
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .news-title:hover {
+      color: var(--secondary-green);
+      text-decoration: none;
+    }
+
+    .news-meta {
+      color: #6c757d;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .news-excerpt {
+      color: #495057;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .news-category {
+      background: var(--light-green);
+      color: var(--primary-green);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .btn-read-more {
+      background: var(--accent-green);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-read-more:hover {
+      background: var(--secondary-green);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-box {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-input {
+      border: 1px solid var(--light-green);
+      border-radius: 25px;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+    }
+
+    .search-btn {
+      background: var(--accent-green);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .search-btn:hover {
+      background: var(--secondary-green);
+      transform: translateY(-2px);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 2rem;
+      color: #6c757d;
+      font-style: italic;
+    }
+
+    .footer {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      border-top: 2px solid var(--gold);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* Mobile Optimizations */
+    @media (max-width: 991px) {
+      body {
+        padding-top: 60px;
+      }
+
+      .navbar {
+        height: 60px;
+        min-height: 60px;
+        padding: 0.5rem 0;
+        background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.3rem;
+        color: white !important;
+      }
+
+      .navbar-toggler {
+        border: none;
+        padding: 0.25rem 0.5rem;
+      }
+
+      .navbar .container{
+        background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+      }
+      .page-header {
+        padding: 1.5rem 0;
+        margin-bottom: 1.5rem;
+        background-position: center center;
+        background-size: cover;
+        min-height: 120px;
+      }
+
+      .page-header .container {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .page-title {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 0.3rem;
+      }
+
+      .page-subtitle {
+        font-size: 0.95rem;
+        text-align: center;
+      }
+
+      .breadcrumb {
+        font-size: 0.85rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .news-container {
+        padding: 1rem 0;
+      }
+
+      .news-card {
+        margin-bottom: 1.2rem;
+        border-radius: 12px;
+      }
+
+      .news-card .card-body {
+        padding: 1rem;
+        margin: 0;
+      }
+
+      .news-image {
+        height: 150px;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .news-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .news-meta {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .news-excerpt {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .news-category {
+        font-size: 0.75rem;
+        margin-bottom: 0.8rem;
+        padding: 0.25rem 0.6rem;
+      }
+
+      .search-box {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border-radius: 12px;
+      }
+
+      .search-input,
+      .search-btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+
+      .search-btn {
+        padding: 0.6rem 1.2rem;
+      }
+
+      .no-results {
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .footer {
+        padding: 1.5rem 0.5rem;
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+      }
+
+      .footer-content {
+        padding-top: 0.8rem;
+        margin-top: 0.8rem;
+      }
+
+      .footer h5 {
+        font-size: 1.1rem;
+      }
+
+      .footer h6 {
+        font-size: 1rem;
+      }
+
+      .footer p {
+        font-size: 0.85rem;
+      }
+
+      /* Responsive grid untuk mobile */
+      .row {
+        margin-left: -5px;
+        margin-right: -5px;
+      }
+
+      .col-12 {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 576px) {
+      .container {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .page-header .container {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .page-title {
+        font-size: 1.6rem;
+      }
+
+      .news-card .card-body {
+        padding: 0.8rem;
+      }
+
+      .news-image {
+        height: 140px;
+      }
+
+      .search-box {
+        padding: 0.8rem;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .highlight {
+      background-color: yellow;
+      padding: 1px 3px;
+      border-radius: 3px;
+    }
+
+    .news-card .card-body {
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+    }
+
+    .news-category {
+      margin-bottom: 1.2rem;
+    }
+
+    .news-title {
+      margin-bottom: 1rem;
+    }
+
+    .news-meta {
+      margin-bottom: 1.2rem;
+    }
+
+    .news-excerpt {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 992px) {
+      .news-card .card-body {
+        padding: 1.2rem 1rem 1rem 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .news-card .card-body {
+        padding: 1rem;
+        margin: 0;
+      }
+
+      .news-category {
+        margin-bottom: 0.8rem;
+      }
+
+      .news-title {
+        margin-bottom: 0.4rem;
+      }
+
+      .news-meta {
+        margin-bottom: 0.8rem;
+      }
+
+      .news-excerpt {
+        margin-bottom: 0.3rem;
+      }
+    }
+
+    .navbar {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+.navbar-brand {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold) !important;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-menu {
+            background: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .dropdown-item {
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.html" onclick="showAllNews()">
+        <i class="fas fa-home me-2"></i>DESA KEMIRI
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto">
+
+          <!-- Dropdown: Info Desa -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="infoDesaDropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-info-circle me-1"></i>Info Desa
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="struktural_perangkat.html"><i class="fas fa-users me-2"></i>Struktural
+                  Desa</a></li>
+              <li><a class="dropdown-item" href="data_penduduk.html"><i class="fas fa-chart-bar me-2"></i>Data
+                  Penduduk</a></li>
+            </ul>
+          </li>
+
+          <!-- Menu utama -->
+          <li class="nav-item">
+            <a class="nav-link" href="sejarah_desa.html">
+              <i class="fas fa-history me-1"></i>Sejarah Desa
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wisata.html">
+              <i class="fas fa-map-marked-alt me-1"></i>Potensi Wisata
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="komoditas.html">
+              <i class="fas fa-seedling me-1"></i>Potensi Komoditas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="peta.html">
+              <i class="fas fa-map me-1"></i>Peta Desa
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#" onclick="showAllNews()"><i
+                    class="fas fa-home me-1"></i>Beranda</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Berita & Informasi</li>
+            </ol>
+          </nav>
+          <h1 class="page-title">Berita & Informasi</h1>
+          <p class="page-subtitle">Ikuti perkembangan terbaru dari Desa Kemiri</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="container news-container">
+    <div class="row">
+      <div class="col-12">
+
+        <!-- Search Box -->
+        <div class="search-box fade-in-up">
+          <h5 class="mb-3">
+            <i class="fas fa-search me-2"></i>Cari Berita
+          </h5>
+          <div class="input-group">
+            <input type="text" class="form-control search-input" id="searchInput"
+              placeholder="Ketik kata kunci untuk mencari berita...">
+            <button class="btn search-btn" type="button" id="searchBtn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- News Cards -->
+        <div class="row" id="newsContainer">
+          <!-- News cards will be populated by JavaScript -->
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results d-none" id="noResults">
+          <i class="fas fa-search fa-3x mb-3"></i>
+          <h4>Tidak ada berita yang ditemukan</h4>
+          <p>Coba gunakan kata kunci yang berbeda atau <a href="#" onclick="showAllNews()">tampilkan semua berita</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 text-center text-md-start">
+          <h5><i class="fas fa-home me-2"></i>DESA KEMIRI</h5>
+          <p class="mb-2">Kecamatan Tulung, Kabupaten Klaten</p>
+          <p class="mb-0">Jawa Tengah, Indonesia</p>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-end">
+          <h6><i class="fas fa-graduation-cap me-2"></i>KKN BELA NEGARA 83</h6>
+          <p class="mb-0">UPN Veteran Yogyakarta</p>
+        </div>
+      </div>
+      <div class="footer-content">
+        <p class="mb-0">© 2025 Desa Kemiri</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Data berita
+    const newsData = [
+      {
+        id: 1,
+        title: "Pembangunan Infrastruktur Jalan Desa Kemiri Tahun 2025",
+        description: "Pemerintah Desa Kemiri mengumumkan dimulainya proyek pembangunan infrastruktur jalan yang akan meningkatkan konektivitas antar dusun. Proyek ini diharapkan dapat mendukung pertumbuhan ekonomi masyarakat dan memudahkan akses transportasi.",
+        category: "Infrastruktur",
+        categoryIcon: "fas fa-road",
+        date: "5 Juli 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+        views: "1,234"
+      },
+      {
+        id: 2,
+        title: "Pelatihan Keterampilan Masyarakat Desa Kemiri",
+        description: "Desa Kemiri menyelenggarakan pelatihan keterampilan untuk meningkatkan kemampuan masyarakat dalam berbagai bidang usaha. Program ini meliputi pelatihan kerajinan tangan, pengolahan hasil pertanian, dan teknologi digital.",
+        category: "Pelatihan",
+        categoryIcon: "fas fa-graduation-cap",
+        date: "3 Juli 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "856"
+      },
+      {
+        id: 3,
+        title: "Festival Budaya dan Potensi Wisata Desa Kemiri",
+        description: "Acara festival budaya tahunan yang mengangkat potensi wisata dan budaya lokal Desa Kemiri akan segera diselenggarakan. Festival ini menampilkan pertunjukan seni tradisional, pameran produk lokal, dan kuliner khas daerah.",
+        category: "Budaya",
+        categoryIcon: "fas fa-music",
+        date: "1 Juli 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "1,567"
+      },
+      {
+        id: 4,
+        title: "Program Bantuan Bibit Unggul untuk Petani Desa Kemiri",
+        description: "Pemerintah desa memberikan bantuan bibit unggul kepada petani untuk meningkatkan produktivitas hasil pertanian. Program ini bertujuan untuk meningkatkan kesejahteraan petani dan ketahanan pangan di desa.",
+        category: "Pertanian",
+        categoryIcon: "fas fa-seedling",
+        date: "28 Juni 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "743"
+      },
+      {
+        id: 5,
+        title: "Posyandu Desa Kemiri Raih Penghargaan Terbaik",
+        description: "Posyandu Desa Kemiri berhasil meraih penghargaan sebagai posyandu terbaik di tingkat kecamatan berkat pelayanan yang optimal. Capaian ini merupakan hasil kerja keras tim kesehatan desa dan partisipasi aktif masyarakat.",
+        category: "Kesehatan",
+        categoryIcon: "fas fa-heartbeat",
+        date: "25 Juni 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "923"
+      },
+      {
+        id: 6,
+        title: "Desa Kemiri Luncurkan Website Resmi",
+        description: "Dalam upaya meningkatkan transparansi dan pelayanan publik, Desa Kemiri resmi meluncurkan website desa yang informatif. Website ini menyediakan informasi lengkap tentang profil desa, layanan publik, dan berbagai program pemerintahan.",
+        category: "Teknologi",
+        categoryIcon: "fas fa-laptop",
+        date: "22 Juni 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "1,123"
+      },
+      {
+        id: 7,
+        title: "BUMDes Kemiri Buka Peluang Kemitraan Usaha",
+        description: "Badan Usaha Milik Desa (BUMDes) Kemiri membuka peluang kemitraan usaha untuk mendukung perekonomian masyarakat. Program ini menawarkan berbagai bidang usaha mulai dari pertanian, perdagangan, hingga jasa wisata.",
+        category: "Ekonomi",
+        categoryIcon: "fas fa-chart-line",
+        date: "20 Juni 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "634"
+      },
+      {
+        id: 8,
+        title: "Gotong Royong Bersihkan Sungai Desa Kemiri",
+        description: "Masyarakat Desa Kemiri bergotong royong membersihkan sungai desa untuk menjaga kebersihan lingkungan. Kegiatan ini rutin dilakukan setiap bulan sebagai wujud kepedulian terhadap kelestarian alam.",
+        category: "Lingkungan",
+        categoryIcon: "fas fa-leaf",
+        date: "18 Juni 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "445"
+      },
+      {
+        id: 9,
+        title: "Pelatihan Digital Marketing untuk UMKM Desa Kemiri",
+        description: "Desa Kemiri menyelenggarakan pelatihan digital marketing untuk para pelaku UMKM. Program ini bertujuan untuk meningkatkan kemampuan pemasaran digital dan memperluas jangkauan pasar produk lokal.",
+        category: "UMKM",
+        categoryIcon: "fas fa-store",
+        date: "15 Juni 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "789"
+      },
+      {
+        id: 10,
+        title: "Lomba Desa Tingkat Kecamatan, Kemiri Raih Juara 2",
+        description: "Desa Kemiri berhasil meraih juara 2 dalam lomba desa tingkat kecamatan. Prestasi ini diraih berkat berbagai inovasi dan program pembangunan yang telah dilaksanakan selama ini.",
+        category: "Prestasi",
+        categoryIcon: "fas fa-trophy",
+        date: "12 Juni 2025",
+        author: "Admin Desa",
+        image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        views: "1,456"
+      }
+    ];
+
+    let filteredNews = [...newsData];
+
+    function highlightText(text, searchTerm) {
+      if (!searchTerm) return text;
+      const regex = new RegExp(`(${searchTerm})`, 'gi');
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+
+    function createNewsCard(news, searchTerm = '') {
+      const highlightedTitle = highlightText(news.title, searchTerm);
+      const highlightedDescription = highlightText(news.description, searchTerm);
+
+      return `
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="news-card fade-in-up">
+            <img src="${news.image}" class="news-image" alt="${news.title}">
+            <div class="card-body">
+              <div class="news-category">
+                <i class="${news.categoryIcon} me-1"></i>${news.category}
+              </div>
+              <h5 class="news-title">
+                ${highlightedTitle}
+              </h5>
+              <div class="news-meta mb-2">
+                <i class="fas fa-calendar-alt me-1"></i>${news.date}
+              </div>
+              <div class="news-excerpt mb-3">
+                ${highlightedDescription}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderNews(newsList, searchTerm = '') {
+      const newsContainer = document.getElementById('newsContainer');
+      const noResults = document.getElementById('noResults');
+      newsContainer.innerHTML = '';
+      if (newsList.length === 0) {
+        noResults.classList.remove('d-none');
+        return;
+      }
+      noResults.classList.add('d-none');
+      newsList.forEach(news => {
+        newsContainer.innerHTML += createNewsCard(news, searchTerm);
+      });
+    }
+
+    function showAllNews() {
+      document.getElementById('searchInput').value = '';
+      filteredNews = [...newsData];
+      renderNews(filteredNews);
+    }
+
+    function searchNews() {
+      const searchTerm = document.getElementById('searchInput').value.trim();
+      if (!searchTerm) {
+        showAllNews();
+        return;
+      }
+      filteredNews = newsData.filter(news =>
+        news.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        news.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        news.category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      renderNews(filteredNews, searchTerm);
+    }
+
+    // Event listeners
+    document.getElementById('searchBtn').addEventListener('click', searchNews);
+    document.getElementById('searchInput').addEventListener('keyup', function (e) {
+      if (e.key === 'Enter') searchNews();
+    });
+
+    // Initial render
+    renderNews(filteredNews);
+
+  </script>
+</body>
+
+</html>

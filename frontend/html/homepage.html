@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desa Kemiri - Tulung, Klaten</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-green: #1b5e20;
+      --secondary-green: #2e7d32;
+      --accent-green: #4caf50;
+      --light-green: #e8f5e8;
+      --gold: #ffd700;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: white !important;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--gold) !important;
+      transform: translateY(-2px);
+    }
+
+    .dropdown-menu {
+      background: white;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .dropdown-item {
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--light-green);
+      color: var(--primary-green);
+    }
+
+    .hero-section {
+      background: linear-gradient(rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.7)),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      z-index: 2;
+      padding: 2rem 1rem;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-badge {
+      background: var(--gold);
+      color: var(--primary-green);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .video-section {
+      background: var(--light-green);
+      padding: 3rem 1rem;
+    }
+
+    .video-placeholder {
+      background: linear-gradient(135deg, var(--secondary-green), var(--accent-green));
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .video-placeholder:hover {
+      transform: translateY(-5px);
+    }
+
+    .section-title {
+      color: var(--primary-green);
+      font-weight: bold;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .history-section {
+      background: white;
+      padding: 3rem 1rem;
+    }
+
+    .history-image {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .history-image:hover {
+      transform: scale(1.05);
+    }
+
+    .history-text {
+      background: var(--light-green);
+      padding: 2rem;
+      border-radius: 15px;
+      border-left: 5px solid var(--accent-green);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-section {
+      background: var(--light-green);
+      padding: 3rem 1rem;
+    }
+
+    .news-card {
+      background: white;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-image {
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .news-title {
+      color: var(--primary-green);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .footer {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      border-top: 2px solid var(--gold);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn-custom {
+      background: var(--accent-green);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background: var(--secondary-green);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .navbar-brand {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .history-text {
+        padding: 1.5rem;
+      }
+
+      .news-card .card-body {
+        padding: 1rem;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-home me-2"></i>DESA KEMIRI
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto">
+
+          <!-- Dropdown: Info Desa -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="infoDesaDropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-info-circle me-1"></i>Info Desa
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="struktural_perangkat.html"><i class="fas fa-users me-2"></i>Struktural
+                  Desa</a></li>
+              <li><a class="dropdown-item" href="data_penduduk.html"><i class="fas fa-chart-bar me-2"></i>Data
+                  Penduduk</a></li>
+            </ul>
+          </li>
+
+          <!-- Menu utama -->
+          <li class="nav-item">
+            <a class="nav-link" href="sejarah_desa.html">
+              <i class="fas fa-history me-1"></i>Sejarah Desa
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wisata.html">
+              <i class="fas fa-map-marked-alt me-1"></i>Potensi Wisata
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="komoditas.html">
+              <i class="fas fa-seedling me-1"></i>Potensi Komoditas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="peta.html">
+              <i class="fas fa-map me-1"></i>Peta Desa
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content fade-in-up">
+        <h1 class="hero-title">Selamat Datang di Desa Kemiri</h1>
+        <p class="hero-subtitle">Kecamatan Tulung, Kabupaten Klaten, Jawa Tengah</p>
+        <p class="hero-subtitle">Desa yang maju dengan potensi wisata dan komoditas unggulan</p>
+        <div class="hero-badge">
+          <i class="fas fa-award me-2"></i>Desa Mandiri & Berkelanjutan
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="container text-center">
+      <h3 class="section-title">Sekilas Desa</h3>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="video-placeholder d-flex align-items-center justify-content-center" style="height: 250px;">
+            <div class="text-center">
+              <i class="fas fa-play-circle text-white" style="font-size: 4rem;"></i>
+              <p class="text-white mt-3 mb-0">Video Profil Desa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sejarah Desa -->
+  <section class="history-section" id="sejarah">
+    <div class="container">
+      <h3 class="section-title text-center">Profile Desa Kemiri</h3>
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 mb-4">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            class="img-fluid history-image" alt="Balai Desa Kemiri">
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="history-text">
+            <h5 class="mb-3" style="color: var(--primary-green);">
+              <i class="fas fa-landmark me-2"></i>Tentang Desa Kemiri
+            </h5>
+            <p class="mb-3">
+              Desa Kemiri adalah sebuah desa yang terletak di Kecamatan Tulung, Kabupaten Klaten, Jawa Tengah,
+              Indonesia.
+              Desa ini memiliki posisi strategis dengan batas wilayah yang jelas dan akses yang mudah.
+            </p>
+            <p class="mb-3">
+              <strong>Batas Wilayah:</strong><br>
+              • Barat: Desa Depok<br>
+              • Timur: Desa Bono<br>
+              • Selatan: Desa Gedong<br>
+              • Utara: Desa Sumberejo
+            </p>
+            <p class="mb-0">
+              Sebagai salah satu wilayah Klaten yang maju, Desa Kemiri memiliki infrastruktur dan akses jalan yang
+              memadai,
+              serta potensi wisata dan komoditas yang terus berkembang.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Berita & Informasi -->
+  <section class="news-section">
+    <div class="container">
+      <h3 class="section-title text-center">Berita & Informasi Terkini</h3>
+
+      <div class="row">
+        <!-- News Card 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card news-card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                    class="img-fluid news-image" alt="Berita">
+                </div>
+                <div class="col-8">
+                  <h6 class="news-title">Pembangunan Infrastruktur Jalan Desa Kemiri Tahun 2025</h6>
+                  <small class="text-muted">
+                    <i class="fas fa-calendar-alt me-1"></i>5 Juli 2025
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Card 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card news-card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                    class="img-fluid news-image" alt="Berita">
+                </div>
+                <div class="col-8">
+                  <h6 class="news-title">Pelatihan Keterampilan Masyarakat Desa Kemiri</h6>
+                  <small class="text-muted">
+                    <i class="fas fa-calendar-alt me-1"></i>3 Juli 2025
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Card 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card news-card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                    class="img-fluid news-image" alt="Berita">
+                </div>
+                <div class="col-8">
+                  <h6 class="news-title">Festival Budaya dan Potensi Wisata Desa Kemiri</h6>
+                  <small class="text-muted">
+                    <i class="fas fa-calendar-alt me-1"></i>1 Juli 2025
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button Lihat Semua -->
+      <div class="text-center mt-4">
+        <a href="page_berita.html" class="btn btn-custom">
+          <i class="fas fa-newspaper me-2"></i>Lihat Semua Berita
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 text-center text-md-start">
+          <h5><i class="fas fa-home me-2"></i>DESA KEMIRI</h5>
+          <p class="mb-2">Kecamatan Tulung, Kabupaten Klaten</p>
+          <p class="mb-0">Jawa Tengah, Indonesia</p>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-end">
+          <h6><i class="fas fa-graduation-cap me-2"></i>KKN BELA NEGARA 83</h6>
+          <p class="mb-0">UPN Veteran Yogyakarta</p>
+        </div>
+      </div>
+      <div class="footer-content">
+        <p class="mb-0">© 2025 Desa Kemiri</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add fade-in animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Mobile menu auto-close
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+      link.addEventListener('click', function () {
+        // Jangan tutup navbar jika link adalah dropdown-toggle
+        if (this.classList.contains('dropdown-toggle')) return;
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse.classList.contains('show')) {
+          navbarToggler.click();
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>

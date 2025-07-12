@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Peta Desa - Desa Kemiri</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    :root {
+      --primary-green: #1b5e20;
+      --secondary-green: #2e7d32;
+      --accent-green: #4caf50;
+      --light-green: #e8f5e8;
+      --gold: #ffd700;
+      --primary-blue: #3f51b5;
+      --secondary-blue: #5c6bc0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: var(--light-green);
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: white !important;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--gold) !important;
+      transform: translateY(-2px);
+    }
+
+    .dropdown-menu {
+      background: white;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .dropdown-item {
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--light-green);
+      color: var(--primary-green);
+    }
+
+    .page-header {
+      background: linear-gradient(rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.7)),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      color: white;
+      padding: 6rem 1rem 3rem;
+      text-align: center;
+      margin-top: 56px;
+      position: relative;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .page-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .main-content {
+      padding: 4rem 0;
+      background: white;
+    }
+
+    .section-title {
+      color: var(--primary-green);
+      font-weight: bold;
+      margin-bottom: 3rem;
+      position: relative;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .peta-section {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 3rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .peta-container {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .peta-image {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-section {
+      background: var(--light-green);
+      padding: 3rem 1rem;
+    }
+
+    .news-card {
+      background: white;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-image {
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .news-title {
+      color: var(--primary-green);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .footer {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      border-top: 2px solid var(--gold);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn-custom {
+      background: var(--accent-green);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background: var(--secondary-green);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .page-subtitle {
+        font-size: 1rem;
+      }
+
+      .main-content {
+        padding: 3rem 0;
+      }
+
+      .peta-container {
+        padding: 1rem;
+      }
+
+      .berita-image {
+        width: 60px;
+        height: 45px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .stagger-animation {
+      animation-delay: 0.1s;
+    }
+
+    .stagger-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .stagger-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .stagger-animation:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .stagger-animation:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .stagger-animation:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.html">
+        <i class="fas fa-home me-2"></i>DESA KEMIRI
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto">
+
+          <!-- Dropdown: Info Desa -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="infoDesaDropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-info-circle me-1"></i>Info Desa
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="struktural_perangkat.html"><i class="fas fa-users me-2"></i>Struktural
+                  Desa</a></li>
+              <li><a class="dropdown-item" href="data_penduduk.html"><i class="fas fa-chart-bar me-2"></i>Data
+                  Penduduk</a></li>
+            </ul>
+          </li>
+
+          <!-- Menu utama -->
+          <li class="nav-item">
+            <a class="nav-link" href="sejarah_desa.html">
+              <i class="fas fa-history me-1"></i>Sejarah Desa
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wisata.html">
+              <i class="fas fa-map-marked-alt me-1"></i>Potensi Wisata
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="komoditas.html">
+              <i class="fas fa-seedling me-1"></i>Potensi Komoditas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="peta.html">
+              <i class="fas fa-map me-1"></i>Peta Desa
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">Peta Desa</h1>
+      <p class="page-subtitle">Peta Wilayah dan Batas Administratif Desa Kemiri</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="main-content">
+    <div class="container">
+      
+      <!-- Desktop Section Title -->
+      <h3 class="section-title">Peta Desa Kemiri</h3>
+
+      <!-- Peta Section -->
+      <div class="peta-section">
+        <div class="peta-container fade-in-up">
+          <div id="map" style="width: 100%; height: 400px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></div>
+          <div class="mt-3">
+            <h5 class="text-center mb-3" style="color: var(--primary-green); font-weight: bold;">
+              <i class="fas fa-map-marked-alt me-2"></i>PETA KABUPATEN KLATEN
+            </h5>
+            <div class="row">
+              <div class="col-md-6">
+                <h6 style="color: var(--secondary-green); font-weight: bold;">Legenda:</h6>
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-square text-success me-2"></i>Wilayah Desa</li>
+                  <li><i class="fas fa-square text-primary me-2"></i>Sungai/Perairan</li>
+                  <li><i class="fas fa-square text-warning me-2"></i>Jalan Utama</li>
+                  <li><i class="fas fa-square text-danger me-2"></i>Batas Administratif</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6 style="color: var(--secondary-green); font-weight: bold;">Informasi Lokasi:</h6>
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-map-pin me-2"></i>Kecamatan Tulung</li>
+                  <li><i class="fas fa-map-marker-alt me-2"></i>Kabupaten Klaten</li>
+                  <li><i class="fas fa-compass me-2"></i>Jawa Tengah</li>
+                  <li><i class="fas fa-globe me-2"></i>Indonesia</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </section>
+
+
+  <!-- News Section -->
+  <section class="news-section">
+    <div class="container">
+      <h3 class="section-title text-center">Berita & Informasi Terkini</h3>
+      
+      <div class="row">
+        <!-- News Card 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card news-card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                       class="img-fluid news-image" alt="Berita">
+                </div>
+                <div class="col-8">
+                  <h6 class="news-title">Pembangunan Infrastruktur Jalan Desa Kemiri Tahun 2025</h6>
+                  <small class="text-muted">
+                    <i class="fas fa-calendar-alt me-1"></i>5 Juli 2025
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Card 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card news-card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                       class="img-fluid news-image" alt="Berita">
+                </div>
+                <div class="col-8">
+                  <h6 class="news-title">Pelatihan Keterampilan Masyarakat Desa Kemiri</h6>
+                  <small class="text-muted">
+                    <i class="fas fa-calendar-alt me-1"></i>3 Juli 2025
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Card 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card news-card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                       class="img-fluid news-image" alt="Berita">
+                </div>
+                <div class="col-8">
+                  <h6 class="news-title">Festival Budaya dan Potensi Wisata Desa Kemiri</h6>
+                  <small class="text-muted">
+                    <i class="fas fa-calendar-alt me-1"></i>1 Juli 2025
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button Lihat Semua -->
+       <div class="text-center mt-4">
+        <a href="page_berita.html" class="btn btn-custom">
+          <i class="fas fa-newspaper me-2"></i>Lihat Semua Berita
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 text-center text-md-start">
+          <h5><i class="fas fa-home me-2"></i>DESA KEMIRI</h5>
+          <p class="mb-2">Kecamatan Tulung, Kabupaten Klaten</p>
+          <p class="mb-0">Jawa Tengah, Indonesia</p>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-end">
+          <h6><i class="fas fa-graduation-cap me-2"></i>KKN BELA NEGARA 83</h6>
+          <p class="mb-0">UPN Veteran Yogyakarta</p>
+        </div>
+      </div>
+      <div class="footer-content">
+        <p class="mb-0">© 2025 Desa Kemiri</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add fade-in animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards
+    document.querySelectorAll('.peta-container, .berita-card').forEach(element => {
+      observer.observe(element);
+    });
+
+    // Mobile menu auto-close
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', function () {
+                // Jangan tutup navbar jika link adalah dropdown-toggle
+                if (this.classList.contains('dropdown-toggle')) return;
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click();
+                }
+            });
+        });
+
+
+    // Add hover effects
+    document.querySelectorAll('.peta-container, .berita-card').forEach(element => {
+      element.addEventListener('mouseenter', function () {
+        this.style.transform = 'translateY(-5px)';
+      });
+
+      element.addEventListener('mouseleave', function () {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Inisialisasi Leaflet Map
+    document.addEventListener('DOMContentLoaded', function () {
+      var map = L.map('map').setView([-7.597, 110.585], 15); // Fokus tengah peta pada area batas desa
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      // Tambahkan marker lokasi desa (opsional, bisa digeser ke tengah batas)
+      L.marker([-7.594391535193764, 110.58323760787306]).addTo(map)
+        .bindPopup('Kantor Desa Kemiri')
+        .openPopup();
+
+      // GeoJSON batas desa Kemiri
+      var batasDesaKemiri = {
+        "type": "FeatureCollection",
+        "name": "batas desa kemiri",
+        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+        "features": [
+          {
+            "type": "Feature",
+            "properties": { "Id": 0 },
+            "geometry": {
+              "type": "MultiLineString",
+              "coordinates": [
+                [
+                  [110.57989895697506, -7.601783258437933],
+                  [110.58244854944286, -7.597804204770966],
+                  [110.58144322716782, -7.597102263774218],
+                  [110.58121717837236, -7.597450259946299],
+                  [110.58038139269399, -7.596840523063634],
+                  [110.5799858073018, -7.59739374774739],
+                  [110.57944447992298, -7.596908932567544],
+                  [110.57862951452842, -7.596379502493733],
+                  [110.57704419863336, -7.595392026176285],
+                  [110.57823392913628, -7.594005990140431],
+                  [110.57959319623586, -7.594901262343797],
+                  [110.57978057878995, -7.59489233936506],
+                  [110.57989360318777, -7.594788237946034],
+                  [110.58002744786944, -7.594716854115916],
+                  [110.58020888177111, -7.594672239222007],
+                  [110.58095246333522, -7.593765069713584],
+                  [110.58034570077876, -7.592691337934639],
+                  [110.58079482404378, -7.592384982330202],
+                  [110.5813034338338, -7.592310624173763],
+                  [110.58301367143173, -7.592557493253082],
+                  [110.58316536207082, -7.59205483211565],
+                  [110.58422422221844, -7.592328470131292],
+                  [110.5845484237804, -7.591471864169193],
+                  [110.58365017725078, -7.590802640761297],
+                  [110.58219870603716, -7.59038326075904],
+                  [110.58274895639482, -7.5889674814606],
+                  [110.58342412845513, -7.587849134787859],
+                  [110.58384053413107, -7.587028220740763],
+                  [110.584149864062, -7.587194783011171],
+                  [110.5845335521492, -7.586977657194439],
+                  [110.58500647002398, -7.587165039748641],
+                  [110.58446811697155, -7.588244720180001],
+                  [110.58610102208667, -7.588916917914219],
+                  [110.58729075258958, -7.586254895913953],
+                  [110.58749598110148, -7.586269767545161],
+                  [110.58803433415392, -7.586495816340744],
+                  [110.58811464096294, -7.58637089463798],
+                  [110.58816223018295, -7.586439304141834],
+                  [110.58967021359541, -7.587111501875995],
+                  [110.58976241770944, -7.587156116769847],
+                  [110.58980108395087, -7.587218577621286],
+                  [110.59056846012521, -7.587661752233657],
+                  [110.591429230144, -7.588554050110758],
+                  [110.59218946793533, -7.58840771325896],
+                  [110.5931460112597, -7.588532634961723],
+                  [110.59312578584121, -7.589071582879569],
+                  [110.5932495178136, -7.589561751846759],
+                  [110.59385865983097, -7.590627750377337],
+                  [110.59439641801828, -7.591427249275398],
+                  [110.59335421409776, -7.593487862506436],
+                  [110.59625239760288, -7.594920298031923],
+                  [110.59598351850912, -7.598610048898365],
+                  [110.59711852140896, -7.598838477154857],
+                  [110.59751351193597, -7.599119253553624],
+                  [110.59749923516989, -7.599119253553624],
+                  [110.59774194019258, -7.599390512108243],
+                  [110.59825114484772, -7.599442860250349],
+                  [110.59852240340234, -7.599966341671688],
+                  [110.5979798862931, -7.600085314721923],
+                  [110.59713755709703, -7.600718251349576],
+                  [110.59648558478142, -7.601517750247524],
+                  [110.59768007420627, -7.602374356209566],
+                  [110.59751827085796, -7.602783623502603],
+                  [110.59295446464876, -7.599899716763503],
+                  [110.59306391985507, -7.599162083851752],
+                  [110.59129835978877, -7.598100844243049],
+                  [110.591817082288, -7.596834970988027],
+                  [110.59131263655468, -7.596430462617036],
+                  [110.59129360086661, -7.595916499039674],
+                  [110.59110514755497, -7.595880331232422],
+                  [110.59090051390842, -7.595792291175201],
+                  [110.59073633109904, -7.595775634948154],
+                  [110.59058404559482, -7.595697112734968],
+                  [110.59034847895521, -7.595923161530493],
+                  [110.58997014465513, -7.59582798309026],
+                  [110.58951566760305, -7.596013581048737],
+                  [110.58885417744352, -7.596015960509817],
+                  [110.58856864212282, -7.595946956140608],
+                  [110.58837114685929, -7.595808947402304],
+                  [110.58815699536876, -7.595801809019235],
+                  [110.58783814759391, -7.595568621840698],
+                  [110.58779293783482, -7.595359229272162],
+                  [110.58749550520906, -7.595168872391696],
+                  [110.58724566180354, -7.595363988194151],
+                  [110.58694109079477, -7.595906505303503],
+                  [110.58651992619667, -7.597020093054255],
+                  [110.58609400267653, -7.598007569371646],
+                  [110.58399769753055, -7.602978263412922],
+                  [110.58351585667674, -7.603881268864654],
+                  [110.58319462944098, -7.604534430910803],
+                  [110.58273777292783, -7.604273879930645],
+                  [110.58243796084122, -7.604209634483539],
+                  [110.58218097905251, -7.604227480441068],
+                  [110.58174196849694, -7.604727167252292],
+                  [110.58116375947247, -7.604752151592834],
+                  [110.58064622670366, -7.604737874826753],
+                  [110.58040709087248, -7.604909196019264],
+                  [110.57936845614353, -7.604977010657876],
+                  [110.57955762329357, -7.604498738995687],
+                  [110.57963257631513, -7.603763485544846],
+                  [110.57921498090872, -7.603545764862872],
+                  [110.57838692847849, -7.603742070395811],
+                  [110.57817634617953, -7.603709947672257],
+                  [110.5770163589392, -7.602396485197005],
+                  [110.57755530685716, -7.601696923661279],
+                  [110.57854397290504, -7.601008069700129],
+                  [110.57989877851514, -7.601783333787751]
+                ]
+              ]
+            }
+          }
+        ]
+      };
+
+      // Tambahkan batas desa ke peta
+      L.geoJSON(batasDesaKemiri, {
+        style: {
+          color: "#1b5e20",
+          weight: 4,
+          opacity: 0.8
+        }
+      }).addTo(map);
+    });
+  </script>
+</body>
+
+</html>
