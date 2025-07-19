@@ -40,7 +40,7 @@
       font-size: 1.3rem;
       color: white !important;
     }
-    
+
 
     .nav-link {
       color: rgba(255, 255, 255, 0.9) !important;
@@ -275,9 +275,10 @@
         padding: 0.25rem 0.5rem;
       }
 
-      .navbar .container{
+      .navbar .container {
         background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
       }
+
       .page-header {
         padding: 1.5rem 0;
         margin-bottom: 1.5rem;
@@ -511,44 +512,45 @@
     }
 
     .navbar {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-.navbar-brand {
-            font-weight: bold;
-            font-size: 1.3rem;
-            color: white !important;
-        }
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .nav-link {
-            color: rgba(255, 255, 255, 0.9) !important;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: white !important;
+    }
 
-        .nav-link:hover {
-            color: var(--gold) !important;
-            transform: translateY(-2px);
-        }
+    .nav-link {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
 
-        .dropdown-menu {
-            background: white;
-            border: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+    .nav-link:hover {
+      color: var(--gold) !important;
+      transform: translateY(-2px);
+    }
 
-        .dropdown-item {
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
+    .dropdown-menu {
+      background: white;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
 
-        .dropdown-item:hover {
-            background: var(--light-green);
-            color: var(--primary-green);
-        }
+    .dropdown-item {
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--light-green);
+      color: var(--primary-green);
+    }
   </style>
 </head>
 
@@ -684,121 +686,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // Data berita
-    const newsData = [
-      {
-        id: 1,
-        title: "Pembangunan Infrastruktur Jalan Desa Kemiri Tahun 2025",
-        description: "Pemerintah Desa Kemiri mengumumkan dimulainya proyek pembangunan infrastruktur jalan yang akan meningkatkan konektivitas antar dusun. Proyek ini diharapkan dapat mendukung pertumbuhan ekonomi masyarakat dan memudahkan akses transportasi.",
-        category: "Infrastruktur",
-        categoryIcon: "fas fa-road",
-        date: "5 Juli 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-        views: "1,234"
-      },
-      {
-        id: 2,
-        title: "Pelatihan Keterampilan Masyarakat Desa Kemiri",
-        description: "Desa Kemiri menyelenggarakan pelatihan keterampilan untuk meningkatkan kemampuan masyarakat dalam berbagai bidang usaha. Program ini meliputi pelatihan kerajinan tangan, pengolahan hasil pertanian, dan teknologi digital.",
-        category: "Pelatihan",
-        categoryIcon: "fas fa-graduation-cap",
-        date: "3 Juli 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "856"
-      },
-      {
-        id: 3,
-        title: "Festival Budaya dan Potensi Wisata Desa Kemiri",
-        description: "Acara festival budaya tahunan yang mengangkat potensi wisata dan budaya lokal Desa Kemiri akan segera diselenggarakan. Festival ini menampilkan pertunjukan seni tradisional, pameran produk lokal, dan kuliner khas daerah.",
-        category: "Budaya",
-        categoryIcon: "fas fa-music",
-        date: "1 Juli 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "1,567"
-      },
-      {
-        id: 4,
-        title: "Program Bantuan Bibit Unggul untuk Petani Desa Kemiri",
-        description: "Pemerintah desa memberikan bantuan bibit unggul kepada petani untuk meningkatkan produktivitas hasil pertanian. Program ini bertujuan untuk meningkatkan kesejahteraan petani dan ketahanan pangan di desa.",
-        category: "Pertanian",
-        categoryIcon: "fas fa-seedling",
-        date: "28 Juni 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "743"
-      },
-      {
-        id: 5,
-        title: "Posyandu Desa Kemiri Raih Penghargaan Terbaik",
-        description: "Posyandu Desa Kemiri berhasil meraih penghargaan sebagai posyandu terbaik di tingkat kecamatan berkat pelayanan yang optimal. Capaian ini merupakan hasil kerja keras tim kesehatan desa dan partisipasi aktif masyarakat.",
-        category: "Kesehatan",
-        categoryIcon: "fas fa-heartbeat",
-        date: "25 Juni 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "923"
-      },
-      {
-        id: 6,
-        title: "Desa Kemiri Luncurkan Website Resmi",
-        description: "Dalam upaya meningkatkan transparansi dan pelayanan publik, Desa Kemiri resmi meluncurkan website desa yang informatif. Website ini menyediakan informasi lengkap tentang profil desa, layanan publik, dan berbagai program pemerintahan.",
-        category: "Teknologi",
-        categoryIcon: "fas fa-laptop",
-        date: "22 Juni 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "1,123"
-      },
-      {
-        id: 7,
-        title: "BUMDes Kemiri Buka Peluang Kemitraan Usaha",
-        description: "Badan Usaha Milik Desa (BUMDes) Kemiri membuka peluang kemitraan usaha untuk mendukung perekonomian masyarakat. Program ini menawarkan berbagai bidang usaha mulai dari pertanian, perdagangan, hingga jasa wisata.",
-        category: "Ekonomi",
-        categoryIcon: "fas fa-chart-line",
-        date: "20 Juni 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "634"
-      },
-      {
-        id: 8,
-        title: "Gotong Royong Bersihkan Sungai Desa Kemiri",
-        description: "Masyarakat Desa Kemiri bergotong royong membersihkan sungai desa untuk menjaga kebersihan lingkungan. Kegiatan ini rutin dilakukan setiap bulan sebagai wujud kepedulian terhadap kelestarian alam.",
-        category: "Lingkungan",
-        categoryIcon: "fas fa-leaf",
-        date: "18 Juni 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "445"
-      },
-      {
-        id: 9,
-        title: "Pelatihan Digital Marketing untuk UMKM Desa Kemiri",
-        description: "Desa Kemiri menyelenggarakan pelatihan digital marketing untuk para pelaku UMKM. Program ini bertujuan untuk meningkatkan kemampuan pemasaran digital dan memperluas jangkauan pasar produk lokal.",
-        category: "UMKM",
-        categoryIcon: "fas fa-store",
-        date: "15 Juni 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "789"
-      },
-      {
-        id: 10,
-        title: "Lomba Desa Tingkat Kecamatan, Kemiri Raih Juara 2",
-        description: "Desa Kemiri berhasil meraih juara 2 dalam lomba desa tingkat kecamatan. Prestasi ini diraih berkat berbagai inovasi dan program pembangunan yang telah dilaksanakan selama ini.",
-        category: "Prestasi",
-        categoryIcon: "fas fa-trophy",
-        date: "12 Juni 2025",
-        author: "Admin Desa",
-        image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        views: "1,456"
-      }
-    ];
-
-    let filteredNews = [...newsData];
+    const apiURL = "https://desa-kemiri-363721261053.us-central1.run.app/api/informasi";
+    let newsData = [];
+    let filteredNews = [];
 
     function highlightText(text, searchTerm) {
       if (!searchTerm) return text;
@@ -807,30 +697,31 @@
     }
 
     function createNewsCard(news, searchTerm = '') {
-      const highlightedTitle = highlightText(news.title, searchTerm);
-      const highlightedDescription = highlightText(news.description, searchTerm);
+      const highlightedTitle = highlightText(news.judul || '', searchTerm);
+      const image = news.gambar || 'https://via.placeholder.com/600x400?text=No+Image';
+
+      // Format tanggal ke format Indonesia
+      const tanggal = new Date(news.tanggal);
+      const formattedDate = tanggal.toLocaleDateString('id-ID', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
 
       return `
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="news-card fade-in-up">
-            <img src="${news.image}" class="news-image" alt="${news.title}">
-            <div class="card-body">
-              <div class="news-category">
-                <i class="${news.categoryIcon} me-1"></i>${news.category}
-              </div>
-              <h5 class="news-title">
-                ${highlightedTitle}
-              </h5>
-              <div class="news-meta mb-2">
-                <i class="fas fa-calendar-alt me-1"></i>${news.date}
-              </div>
-              <div class="news-excerpt mb-3">
-                ${highlightedDescription}
-              </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="news-card fade-in-up d-flex flex-column h-100">
+          <img src="${image}" class="news-image" alt="${news.judul}">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="news-title">${highlightedTitle}</h5>
+              <p class="news-meta"><i class="fas fa-calendar-alt me-1"></i>${formattedDate}</p>
             </div>
+            <a href="berita_detail.html?id=${news.id}" class="btn-read-more mt-auto">Lihat Detail</a>
           </div>
         </div>
-      `;
+      </div>
+    `;
     }
 
     function renderNews(newsList, searchTerm = '') {
@@ -860,11 +751,47 @@
         return;
       }
       filteredNews = newsData.filter(news =>
-        news.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        news.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        news.category.toLowerCase().includes(searchTerm.toLowerCase())
+        (news.judul || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (news.deskripsi || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (news.kategori || '').toLowerCase().includes(searchTerm.toLowerCase())
       );
       renderNews(filteredNews, searchTerm);
+    }
+
+    async function fetchNews() {
+      try {
+        const response = await fetch(apiURL);
+        const result = await response.json();
+        console.log("API Result:", result); // Debug
+
+        // Karena API mengembalikan array langsung
+        const berita = result;
+
+        if (!Array.isArray(berita) || berita.length === 0) {
+          document.getElementById('newsContainer').innerHTML = `
+          <div class="col-12 text-center text-muted">Tidak ada berita ditemukan dari API.</div>
+        `;
+          return;
+        }
+
+        newsData = berita.map(item => ({
+          id: item.id,
+          judul: item.judul || "Tanpa Judul",
+          deskripsi: item.deskripsi || "Tidak ada deskripsi.",
+          kategori: item.kategori || "Umum",
+          tanggal: item.createdAt || new Date().toISOString(), // GUNAKAN TANGGAL DARI API
+          gambar: item.image_url || "https://via.placeholder.com/600x400?text=No+Image"
+        }));
+
+
+        showAllNews();
+
+      } catch (error) {
+        console.error("Gagal memuat data berita:", error);
+        document.getElementById('newsContainer').innerHTML = `
+        <div class="col-12 text-center text-danger">Gagal memuat berita dari server.</div>
+      `;
+      }
     }
 
     // Event listeners
@@ -873,10 +800,11 @@
       if (e.key === 'Enter') searchNews();
     });
 
-    // Initial render
-    renderNews(filteredNews);
-
+    // Initial fetch
+    fetchNews();
   </script>
+
+
 </body>
 
 </html>

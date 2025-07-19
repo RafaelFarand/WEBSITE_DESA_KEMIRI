@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detail Berita - Desa Kemiri</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-green: #1b5e20;
+      --secondary-green: #2e7d32;
+      --accent-green: #4caf50;
+      --light-green: #e8f5e8;
+      --gold: #ffd700;
+    }
+
+    body {
+      background: var(--light-green);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: var(--gold) !important;
+    }
+
+    .page-header {
+      background: linear-gradient(rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.7)),
+        url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 6rem 1rem 3rem;
+      text-align: center;
+      margin-top: 56px;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-content {
+      padding: 4rem 0;
+      background: white;
+    }
+
+    .detail-card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      margin-bottom: 2rem;
+    }
+
+    .detail-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .detail-title {
+      color: var(--primary-green);
+      font-weight: bold;
+      font-size: 1.7rem;
+    }
+
+    .btn-custom {
+      background: var(--accent-green);
+      color: white;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .btn-custom:hover {
+      background: var(--secondary-green);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .footer {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      border-top: 2px solid var(--gold);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.html"><i class="fas fa-home me-2"></i>DESA KEMIRI</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+              <i class="fas fa-info-circle me-1"></i>Info Desa
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="struktural_perangkat.html">Struktural Desa</a></li>
+              <li><a class="dropdown-item" href="data_penduduk.html">Data Penduduk</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="sejarah_desa.html">Sejarah Desa</a></li>
+          <li class="nav-item"><a class="nav-link" href="wisata.html">Potensi Wisata</a></li>
+          <li class="nav-item"><a class="nav-link" href="komoditas.html">Potensi Komoditas</a></li>
+          <li class="nav-item"><a class="nav-link" href="peta.html">Peta Desa</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">Detail Berita & Informasi</h1>
+    </div>
+  </section>
+
+  <!-- Main Detail Content -->
+  <section class="main-content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+          <div class="card detail-card">
+            <img class="detail-image" src="" alt="Berita">
+            <div class="card-body">
+              <h3 class="detail-title"></h3>
+              <p class="text-muted small"><i class="fas fa-calendar-alt me-1"></i><span class="detail-date"></span></p>
+              <p class="detail-desc"></p>
+            </div>
+          </div>
+          <a href="page_berita.html" class="btn btn-custom"><i class="fas fa-arrow-left me-2"></i>Kembali ke Informasi Desa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 text-center text-md-start">
+          <h5><i class="fas fa-home me-2"></i>DESA KEMIRI</h5>
+          <p class="mb-2">Kecamatan Tulung, Kabupaten Klaten</p>
+          <p class="mb-0">Jawa Tengah, Indonesia</p>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-end">
+          <h6><i class="fas fa-graduation-cap me-2"></i>KKN BELA NEGARA 83</h6>
+          <p class="mb-0">UPN Veteran Yogyakarta</p>
+        </div>
+      </div>
+      <div class="footer-content">
+        <p class="mb-0">© 2025 Desa Kemiri</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      if (!id) return;
+
+      try {
+        const res = await fetch(`https://desa-kemiri-363721261053.us-central1.run.app/api/informasi/${id}`);
+        const data = await res.json();
+        document.querySelector('.detail-image').src = data.image_url || 'https://via.placeholder.com/800x400?text=No+Image';
+        document.querySelector('.detail-title').textContent = data.judul;
+        document.querySelector('.detail-date').textContent = new Date(data.createdAt).toLocaleDateString('id-ID', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        });
+        document.querySelector('.detail-desc').textContent = data.deskripsi;
+      } catch (e) {
+        document.querySelector('.detail-title').textContent = 'Data tidak ditemukan';
+        document.querySelector('.detail-desc').textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -8,6 +8,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.5/leaflet.awesome-markers.css">
   <style>
     :root {
       --primary-green: #1b5e20;
@@ -141,36 +143,6 @@
       height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .news-section {
-      background: var(--light-green);
-      padding: 3rem 1rem;
-    }
-
-    .news-card {
-      background: white;
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      margin-bottom: 1.5rem;
-    }
-
-    .news-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .news-image {
-      border-radius: 10px;
-      object-fit: cover;
-    }
-
-    .news-title {
-      color: var(--primary-green);
-      font-weight: 600;
-      line-height: 1.4;
     }
 
     .footer {
@@ -335,121 +307,60 @@
   <!-- Main Content -->
   <section class="main-content">
     <div class="container">
-      
+
       <!-- Desktop Section Title -->
       <h3 class="section-title">Peta Desa Kemiri</h3>
 
       <!-- Peta Section -->
-      <div class="peta-section">
-        <div class="peta-container fade-in-up">
-          <div id="map" style="width: 100%; height: 400px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></div>
-          <div class="mt-3">
-            <h5 class="text-center mb-3" style="color: var(--primary-green); font-weight: bold;">
-              <i class="fas fa-map-marked-alt me-2"></i>PETA KABUPATEN KLATEN
-            </h5>
-            <div class="row">
-              <div class="col-md-6">
-                <h6 style="color: var(--secondary-green); font-weight: bold;">Legenda:</h6>
-                <ul class="list-unstyled">
-                  <li><i class="fas fa-square text-success me-2"></i>Wilayah Desa</li>
-                  <li><i class="fas fa-square text-primary me-2"></i>Sungai/Perairan</li>
-                  <li><i class="fas fa-square text-warning me-2"></i>Jalan Utama</li>
-                  <li><i class="fas fa-square text-danger me-2"></i>Batas Administratif</li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <h6 style="color: var(--secondary-green); font-weight: bold;">Informasi Lokasi:</h6>
-                <ul class="list-unstyled">
-                  <li><i class="fas fa-map-pin me-2"></i>Kecamatan Tulung</li>
-                  <li><i class="fas fa-map-marker-alt me-2"></i>Kabupaten Klaten</li>
-                  <li><i class="fas fa-compass me-2"></i>Jawa Tengah</li>
-                  <li><i class="fas fa-globe me-2"></i>Indonesia</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+
+      <div class="peta-container fade-in-up">
+        <div id="map" style="width: 100%; height: 400px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
         </div>
-      </div>      
-    </div>
-  </section>
-
-
-  <!-- News Section -->
-  <section class="news-section">
-    <div class="container">
-      <h3 class="section-title text-center">Berita & Informasi Terkini</h3>
-      
-      <div class="row">
-        <!-- News Card 1 -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card news-card">
-            <div class="card-body">
-              <div class="row align-items-center">
-                <div class="col-4">
-                  <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
-                       class="img-fluid news-image" alt="Berita">
-                </div>
-                <div class="col-8">
-                  <h6 class="news-title">Pembangunan Infrastruktur Jalan Desa Kemiri Tahun 2025</h6>
-                  <small class="text-muted">
-                    <i class="fas fa-calendar-alt me-1"></i>5 Juli 2025
-                  </small>
-                </div>
-              </div>
+        <div class="mt-3">
+          <h5 class="text-center mb-3" style="color: var(--primary-green); font-weight: bold;">
+            <i class="fas fa-map-marked-alt me-2"></i>PETA KABUPATEN KLATEN
+          </h5>
+          <div class="row">
+            <div class="col-md-6">
+              <h6 style="color: var(--secondary-green); font-weight: bold;">Legenda:</h6>
+              <ul class="list-unstyled">
+                <li><span
+                    style="display:inline-block;width:18px;height:18px;background:rgb(0, 0, 0);border-radius:50%;margin-right:8px;"></span>Kantor
+                  Desa</li>
+                <li><span
+                    style="display:inline-block;width:18px;height:18px;background:blue;border-radius:50%;margin-right:8px;"></span>Sarana
+                  Prasarana Umum</li>
+                <li><span
+                    style="display:inline-block;width:18px;height:18px;background:red;border-radius:50%;margin-right:8px;"></span>Tempat
+                  Ibadah</li>
+                <li><span
+                    style="display:inline-block;width:18px;height:18px;background:orange;border-radius:50%;margin-right:8px;"></span>UMKM
+                </li>
+                <li><span
+                    style="display:inline-block;width:18px;height:18px;background:purple;border-radius:50%;margin-right:8px;"></span>Wisata
+                </li>
+                <li><span
+                    style="display:inline-block;width:18px;height:18px;background:cadetblue;border-radius:50%;margin-right:8px;"></span>Lainnya
+                </li>
+                <li><span
+                    style="display:inline-block;width:30px;height:6px;background:#1b5e20;border-radius:0;margin-right:8px;"></span>Batas
+                  Desa Kemiri</li>
+              </ul>
             </div>
-          </div>
-        </div>
-
-        <!-- News Card 2 -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card news-card">
-            <div class="card-body">
-              <div class="row align-items-center">
-                <div class="col-4">
-                  <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
-                       class="img-fluid news-image" alt="Berita">
-                </div>
-                <div class="col-8">
-                  <h6 class="news-title">Pelatihan Keterampilan Masyarakat Desa Kemiri</h6>
-                  <small class="text-muted">
-                    <i class="fas fa-calendar-alt me-1"></i>3 Juli 2025
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- News Card 3 -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card news-card">
-            <div class="card-body">
-              <div class="row align-items-center">
-                <div class="col-4">
-                  <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
-                       class="img-fluid news-image" alt="Berita">
-                </div>
-                <div class="col-8">
-                  <h6 class="news-title">Festival Budaya dan Potensi Wisata Desa Kemiri</h6>
-                  <small class="text-muted">
-                    <i class="fas fa-calendar-alt me-1"></i>1 Juli 2025
-                  </small>
-                </div>
-              </div>
+            <div class="col-md-6">
+              <h6 style="color: var(--secondary-green); font-weight: bold;">Informasi Lokasi:</h6>
+              <ul class="list-unstyled">
+                <li><i class="fas fa-map-pin me-2"></i>Kecamatan Tulung</li>
+                <li><i class="fas fa-map-marker-alt me-2"></i>Kabupaten Klaten</li>
+                <li><i class="fas fa-compass me-2"></i>Jawa Tengah</li>
+                <li><i class="fas fa-globe me-2"></i>Indonesia</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Button Lihat Semua -->
-       <div class="text-center mt-4">
-        <a href="page_berita.html" class="btn btn-custom">
-          <i class="fas fa-newspaper me-2"></i>Lihat Semua Berita
-        </a>
-      </div>
     </div>
   </section>
-
 
   <!-- Footer -->
   <footer class="footer">
@@ -473,6 +384,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.5/leaflet.awesome-markers.js"></script>
   <script>
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -509,16 +422,16 @@
 
     // Mobile menu auto-close
     document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            link.addEventListener('click', function () {
-                // Jangan tutup navbar jika link adalah dropdown-toggle
-                if (this.classList.contains('dropdown-toggle')) return;
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse.classList.contains('show')) {
-                    navbarToggler.click();
-                }
-            });
-        });
+      link.addEventListener('click', function () {
+        // Jangan tutup navbar jika link adalah dropdown-toggle
+        if (this.classList.contains('dropdown-toggle')) return;
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse.classList.contains('show')) {
+          navbarToggler.click();
+        }
+      });
+    });
 
 
     // Add hover effects
@@ -534,16 +447,154 @@
 
     // Inisialisasi Leaflet Map
     document.addEventListener('DOMContentLoaded', function () {
-      var map = L.map('map').setView([-7.597, 110.585], 15); // Fokus tengah peta pada area batas desa
+
+
+      var map = L.map('map').setView([-7.597, 110.585], 15);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      // Tambahkan marker lokasi desa (opsional, bisa digeser ke tengah batas)
-      L.marker([-7.594391535193764, 110.58323760787306]).addTo(map)
-        .bindPopup('Kantor Desa Kemiri')
-        .openPopup();
+      // Data marker per kategori
+      const kategori = [
+        {
+          nama: "Kantor Desa",
+          color: "#000000",
+          data: [
+            { pos: [-7.594391535193764, 110.58323760787306], label: "Kantor Desa Kemiri" }
+          ]
+        },
+        {
+          nama: "Sarana Prasarana Umum",
+          color: "#1976d2",
+          data: [
+            { pos: [-7.591310847419547, 110.58718672874194], label: "SD N 2 Kemiri" },
+            { pos: [-7.591016517564013, 110.58700948210547], label: "TK Pertiwi Kemiri" },
+            { pos: [-7.5902605698031484, 110.58764884696963], label: "Lapangan Desa Kemiri" },
+            { pos: [-7.604244480161722, 110.58024564370767], label: "SMP N 3 Tulung" }
+          ]
+        },
+        {
+          nama: "Tempat Ibadah",
+          color: "#e53935",
+          data: [
+            { pos: [-7.603192668013998, 110.58327714581024], label: "GPKB Klaten" },
+            { pos: [-7.594409902237898, 110.58322207043474], label: "Masjid Nurul islam" },
+            { pos: [-7.591187933316378, 110.58698392615277], label: "Masjid Nurul Huda" },
+            { pos: [-7.5913363153052185, 110.59230925934821], label: "Masjid Al-Barkah" },
+            { pos: [-7.5955258468663605, 110.57855327537813], label: "Masjid Al-Ikhlas" },
+            { pos: [-7.596306284966462, 110.58091146320568], label: "Masjid An-Nuur" },
+            { pos: [-7.593174279762472, 110.586180606614], label: "Masjid Baitul Iqro" },
+            { pos: [-7.601005476848086, 110.58234276906101], label: "Masjid Nurul Hidayah" },
+            { pos: [-7.6042409742797945, 110.57944274761779], label: "Masjid At-Taqwa" },
+            { pos: [-7.603335520508044, 110.5809454888017], label: "Masjid Abdullah" },
+            { pos: [-7.589952998358443, 110.583185713053], label: "Mushola Al-Marhamah" },
+            { pos: [-7.5923102213409805, 110.58480003984971], label: "Mushola Al-Mutaqin" }
+          ]
+        },
+        {
+          nama: "UMKM",
+          color: "#ff9800",
+          data: [
+            { pos: [-7.60186724647734, 110.57876901118863], label: "Rambak Balap" },
+            { pos: [-7.601927247500965, 110.57935741840298], label: "Seblak Balap" },
+            { pos: [-7.602558124641127, 110.57905751684252], label: "Laundry Yoshua" },
+            { pos: [-7.604116752809611, 110.57924994597468], label: "Gado Gado Anugrah" },
+            { pos: [-7.601850832840964, 110.58348482142974], label: "Soto Ayam Brengos" },
+            { pos: [-7.590845753410016, 110.59182095809474], label: "Soto Ponorogo" },
+            { pos: [-7.5911155022650965, 110.5902012080921], label: "Warung Seblak Mbak Ella" },
+            { pos: [-7.592153043626409, 110.5901561679443], label: "Warung Mbak Ning" },
+            { pos: [-7.591724332150449, 110.5906904054498], label: "Bengkel Motor Suroto" },
+            { pos: [-7.595725414063389, 110.58110505688451], label: "Ayam kremesLidya" },
+            { pos: [-7.595725414063389, 110.58110505688451], label: "Toko Hewan Naufal" },
+            { pos: [-7.591755098348849, 110.59095195019064], label: "Toko Sembako Warsini" },
+            { pos: [-7.590964543245336, 110.59228364200382], label: "Sate ayam Cak Rizki" },
+            { pos: [-7.591166939228501, 110.59277501509347], label: "Warung Bakso Mbak Intan" },
+            { pos: [-7.590938097331123, 110.59224772479423], label: "Angkringan 37" },
+            { pos: [-7.590885587938165, 110.59215183582106], label: "Mi Ayam & Bakso Didik" },
+            { pos: [-7.590962229542945, 110.59234579563608], label: "Potong Rambut Cak Adi" },
+            { pos: [-7.5911759217071655, 110.5925237989104], label: "Bengkel JRT Jaya Motor" },
+            { pos: [-7.591038436587191, 110.5862462835798], label: "Bengkel Las Bambang" },
+            { pos: [-7.590365125434021, 110.584935734173], label: "Toko Jiyem" },
+            { pos: [-7.58941030176232, 110.5837264392122], label: "Toko Bu Ayu" },
+            { pos: [-7.601101625973249, 110.59563009805228], label: "Toko Bangunan Raka Mulya" },
+            { pos: [-7.590749343135257, 110.59095827915687], label: "Pancingan Langgeng Jaya" },
+            { pos: [-7.589919465301484, 110.58466483840255], label: "Toko Beras Sido Makmur" },
+            { pos: [-7.593168526364059, 110.58276673675277], label: "Toko Barokah" },
+            { pos: [-7.6006676410168295, 110.5826387975494], label: "Bengkel Motor Tris" },
+            { pos: [-7.603552258125215, 110.57931358147879], label: "Angkringan 57 K-Rep" },
+            { pos: [-7.6031904661569705, 110.5795116724941], label: "Toko Aksesoris HP" },
+            { pos: [-7.592252732423281, 110.59353292358406], label: "Toko Pakan Hewan" },
+            { pos: [-7.601287185403271, 110.58429236327375], label: "Toko Sembako Pariah" },
+            { pos: [-7.601774911380886, 110.58326538405484], label: "Toko Joos" },
+            { pos: [-7.596682263461115, 110.58628477757144], label: "Cuci Motor" },
+            { pos: [-7.596540695917991, 110.58625286134699], label: "Warung Soto Yanti" },
+            { pos: [-7.5962946154387945, 110.58639023642594], label: "Kios Dwi Tani" },
+            { pos: [-7.596132190797502, 110.58652678203511], label: "Toko Salsabila" },
+            { pos: [-7.600792804252449, 110.58236822168594], label: "Tambal Ban" },
+            { pos: [-7.595835144951265, 110.58663220030823], label: "Angkringan Mriki Den" }
+          ]
+        },
+        {
+          nama: "Wisata",
+          color: "#8e24aa",
+          data: [
+            { pos: [-7.596358940154215, 110.58364125693804], label: "Wisata Umbul Sendang Sari" },
+            { pos: [-7.591563, 110.584814], label: "Kali Tengkleng" },
+            { pos: [-7.593866887029035, 110.58561588257596], label: "Pemancingan" },
+            
+          ]
+        },
+        {
+          nama: "Lainnya",
+          color: "#009688",
+          data: [
+            { pos: [-7.601633591963837, 110.57829698456523], label: "Peternakan Gemak Lokal Kriswanto" },
+            { pos: [-7.602556822200067, 110.58363858926505], label: "CV Meubel APM" }
+          ]
+        }
+      ];
+
+      // Fungsi marker default Leaflet
+      function getCustomIcon(color) {
+  const svgIcon = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="35" viewBox="0 0 25 41">
+      <path d="M12.5 0C5.6 0 0 5.6 0 12.5c0 9.4 12.5 28.5 12.5 28.5S25 21.9 25 12.5C25 5.6 19.4 0 12.5 0z" fill="${color}"/>
+      <circle cx="12.5" cy="12.5" r="5" fill="white"/>
+    </svg>
+  `;
+  return L.divIcon({
+    className: "",
+    html: svgIcon,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34]
+  });
+}
+
+      // Fungsi untuk membuka rute Google Maps
+      window.getDirections = function (lat, lng) {
+        const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+        window.open(url, '_blank');
+      };
+
+      // Tambahkan marker ke peta sesuai kategori dan warna, dengan popup berisi tombol rute
+      kategori.forEach(kat => {
+        kat.data.forEach(item => {
+          const marker = L.marker(item.pos, { icon: getCustomIcon(kat.color) }).addTo(map);
+
+          // Konten popup dengan tombol rute
+          const popupContent = `
+      <b style="color:${kat.color}">${item.label}</b><br>
+      <button onclick="getDirections(${item.pos[0]}, ${item.pos[1]})"
+        style="margin-top:8px;padding:6px 16px;background:#3498db;color:#fff;border:none;border-radius:5px;cursor:pointer;">
+        <i class="fas fa-route"></i> Rute
+      </button>
+    `;
+
+          marker.bindPopup(popupContent);
+        });
+      });
 
       // GeoJSON batas desa Kemiri
       var batasDesaKemiri = {

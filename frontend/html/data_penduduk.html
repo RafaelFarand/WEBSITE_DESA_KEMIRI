@@ -314,6 +314,39 @@
         .stagger-animation:nth-child(6) {
             animation-delay: 0.6s;
         }
+
+        .news-section {
+            background: var(--light-green);
+            padding: 3rem 1rem;
+        }
+
+        .news-card {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-image {
+            border-radius: 10px;
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+        }
+
+        .news-title {
+            color: var(--primary-green);
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.3;
+        }
     </style>
 </head>
 
@@ -389,77 +422,16 @@
 
     <section class="news-section">
         <div class="container">
-            <h3 class="section-title">Berita Klaten</h3>
+            <h3 class="section-title">Informasi Desa Kemiri</h3>
+            <div class="row" id="beritaCardsContainer"></div>
 
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card news-card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-4">
-                                    <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
-                                        class="img-fluid news-image" alt="Berita">
-                                </div>
-                                <div class="col-8">
-                                    <h6 class="news-title">Formula 1: Piasari Fumes At Costly Silverstone Penalty, Says
-                                        'Apparently You Can't Brake Anymore'</h6>
-                                    <small class="text-muted">
-                                        <i class="fas fa-calendar-alt me-1"></i>6 Juli 2025
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card news-card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-4">
-                                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
-                                        class="img-fluid news-image" alt="Berita">
-                                </div>
-                                <div class="col-8">
-                                    <h6 class="news-title">Formula 1: Piasari Fumes At Costly Silverstone Penalty, Says
-                                        'Apparently You Can't Brake Anymore'</h6>
-                                    <small class="text-muted">
-                                        <i class="fas fa-calendar-alt me-1"></i>5 Juli 2025
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card news-card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-4">
-                                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
-                                        class="img-fluid news-image" alt="Berita">
-                                </div>
-                                <div class="col-8">
-                                    <h6 class="news-title">Formula 1: Piasari Fumes At Costly Silverstone Penalty, Says
-                                        'Apparently You Can't Brake Anymore'</h6>
-                                    <small class="text-muted">
-                                        <i class="fas fa-calendar-alt me-1"></i>4 Juli 2025
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Button Lihat Semua -->
+            <div class="text-center mt-4">
+                <a href="page_berita.html" class="btn btn-custom">
+                    <i class="fas fa-newspaper me-2"></i>Lihat Semua Informasi
+                </a>
             </div>
-        </div>
-
-        <!-- Button Lihat Semua -->
-        <div class="text-center mt-4">
-            <a href="page_berita.html" class="btn btn-custom">
-                <i class="fas fa-newspaper me-2"></i>Lihat Semua Berita
-            </a>
-        </div>
         </div>
 
     </section>
@@ -467,6 +439,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
+
                 <div class="col-12 col-md-6 text-center text-md-start">
                     <h5><i class="fas fa-home me-2"></i>DESA KEMIRI</h5>
                     <p class="mb-2">Kecamatan Tulung, Kabupaten Klaten</p>
@@ -561,7 +534,7 @@
             pendudukDataCard.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div> Loading data...</div>';
 
             try {
-                const response = await fetch('http://localhost:3000/api/penduduk');
+                const response = await fetch('https://desa-kemiri-363721261053.us-central1.run.app/api/penduduk');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -623,8 +596,53 @@
             }
         }
 
-        // Fetch data when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', fetchPendudukData);
+        async function fetchInformasiData() {
+            const beritaContainer = document.getElementById('beritaCardsContainer');
+            beritaContainer.innerHTML = `<div class="text-center p-4"><div class="spinner-border text-success"></div> Memuat...</div>`;
+
+            try {
+                const response = await fetch('https://desa-kemiri-363721261053.us-central1.run.app/api/informasi');
+                const data = await response.json();
+
+                if (data.length) {
+                    const beritaHTML = data.slice(0, 3).map(info => {
+                        const tanggal = new Date(info.createdAt).toLocaleDateString('id-ID', {
+                            day: 'numeric', month: 'long', year: 'numeric'
+                        });
+                        return `
+            <div class="col-12 col-md-6 col-lg-4">
+              <a href="berita_detail.html?id=${info.id}" class="text-decoration-none text-dark">
+                <div class="card news-card p-2">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-4">
+                        <img src="${info.image_url || 'https://via.placeholder.com/200x150?text=No+Image'}" class="news-image" alt="Berita">
+                      </div>
+                      <div class="col-8">
+                        <h6 class="news-title mb-1">${info.judul}</h6>
+                        <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>${tanggal}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>`;
+                    }).join('');
+                    beritaContainer.innerHTML = beritaHTML;
+                } else {
+                    beritaContainer.innerHTML = '<div class="text-center p-4 text-warning">Belum ada berita & informasi.</div>';
+                }
+
+            } catch (err) {
+                beritaContainer.innerHTML = '<div class="text-center p-4 text-danger">Gagal memuat berita & informasi.</div>';
+                console.error(err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchPendudukData();
+            fetchInformasiData();
+        });
     </script>
 </body>
 
